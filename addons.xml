@@ -58,9 +58,9 @@
 
     <addon id="repository.GugZiAdult" name="GugZi's Addons" version="0.1.0" provider-name="GugZi">
         <extension point="xbmc.addon.repository" name="GugZi's Addons">
-            <info compressed="false">https://raw.githubusercontent.com/GugZi/Addons_repo/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/GugZi/Addons_repo/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/GugZi/Addons_repo/</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/GugZi/Addons/master/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/GugZi/Addons/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/GugZi/Addons/</datadir>
             <hashes>false</hashes>
         </extension>
         <extension point="xbmc.addon.metadata">

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+<!-- Plugin settings: Movie section -->
+    <category label="Movie section" id="section_movie">
+        <setting type="sep" />
+        <setting label="[B]Options for downloading Movie artwork[/B]" type="lsep" />
+        <setting type="sep" />
+		<setting label="Fanart" type="bool"      id="fanart"                     default="true"/>
+		<setting label="Maximum extrafanart" type="slider"		id="limit_extrafanart_maximum"		default="5"			subsetting="true" enable="eq(-1,true)" visible="eq(-1,true)" range="1,5" option="int"/>
+		<setting label="Thumb" type="bool"      id="thumb"                     default="true"/>
+		<setting label="Maximum extrathumb" type="slider"		id="limit_extrathumb_maximum"		default="5"			subsetting="true" enable="eq(-1,true)" visible="eq(-1,true)" range="1,5" option="int"/>
+    </category>
+    
+<!-- Plugin settings: Trailer section -->
+	<category label="Trailer section" id="section_trailer">
+	    <setting type="sep" />
+        <setting label="[B]Options for downloading Trailer[/B]" type="lsep" />
+        <setting type="sep" />
+		<setting label="Enable Trailer"  type="bool"		id="trailer_enable"             default="true"/>
+		<setting label="Trailer Quality" type="enum"	    id="trailer_quality"            subsetting="true" enable="eq(-1,true)" visible="eq(-1,true)" values="mp4_320_500|mp4_480_1500|mp4_720_2600|mp4_1080_6000"  default="3"/>
+    </category>
+</settings>

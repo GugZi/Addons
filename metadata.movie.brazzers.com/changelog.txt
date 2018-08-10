@@ -1,0 +1,12 @@
+[B]1.5.8[/B]
+- new: Now you can change poster / fanart
+
+[B]1.5.7[/B]
+- fixed: Scraper
+
+[B]1.5.6[/B]
+- fixed: image url
+
+[B]1.5.6[/B]
+- fixed: Scraper
+- fixed: NFO

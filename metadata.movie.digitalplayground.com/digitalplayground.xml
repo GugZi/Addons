@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?><scraper framework="11" date="2018-08-07" name="Digital Playground-scraper" content="movies" thumb="icon.png" language="en">
+	<NfoUrl dest="3">
+		<RegExp input="$$1" output="&lt;url&gt;http://www.digitalplayground.com/\1/trailer/\2/\3/&lt;/url&gt;" dest="3">
+			<expression noclean="1">digitalplayground.com/([^/]*)/trailer/([0-9]*)/([^/]*)</expression>
+		</RegExp>
+	</NfoUrl>
+	<CreateSearchUrl dest="3">
+		<RegExp input="$$1" output="&lt;url&gt;http://www.digitalplayground.com/search/?q=\1&lt;/url&gt;" dest="3">
+			<expression clear="yes" noclean="1" />
+		</RegExp>
+	</CreateSearchUrl>
+	<GetSearchResults dest="6">
+		<RegExp input="$$4" output="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;results&gt;\1&lt;/results&gt;" dest="6+">
+			<RegExp input="$$1" output="&lt;entity&gt;&lt;title&gt;\4&lt;/title&gt;&lt;url&gt;http://digitalplayground.com/\1/trailer/\2/\3&lt;/url&gt;&lt;id&gt;\2&lt;/id&gt;&lt;/entity&gt;" dest="4+">
+				<expression repeat="yes" clear="yes" trim="1,2,3,4,5,6,7,8,9">&lt;div class="preview-image"&gt;\s*&lt;a href="/(\w*)/trailer/([^/]*)/([^/]*)/"[^&gt;]*title="([^-]*)</expression>
+			</RegExp>
+			<expression noclean="1" />
+		</RegExp>
+	</GetSearchResults>
+	<GetDetails dest="7">
+		<RegExp input="$$5" output="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;&lt;details&gt;\1&lt;/details&gt;" dest="7">
+			<RegExp input="$$1" output="&lt;plot&gt;\1.&lt;/plot&gt;" dest="5+">
+				<expression trim="1">&lt;span class="subtitle"&gt;SYNOPSIS&lt;/span&gt;\s*&lt;span&gt;\s*([^&lt;]*)&lt;/span&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;lockdata&gt;false&lt;/lockdata&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;dateadded&gt;&lt;/dateadded&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;title&gt;\1&lt;/title&gt;" dest="5+">
+				<expression trim="1,5">&lt;div class="player-title"&gt;\s*&lt;h1&gt;\s*([^&lt;]*)&lt;/h1&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;year&gt;\1&lt;/year&gt;" dest="5+">
+				<expression noclean="1">&lt;li&gt;release date: &lt;span class=""&gt;[^-]*-[^-]*-([0-9]*)&lt;/span&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;premiered&gt;\1&lt;/premiered&gt;" dest="5+">
+				<expression>&lt;li&gt;release date: &lt;span class=""&gt;([^&lt;]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;releasedate&gt;\1&lt;/releasedate&gt;" dest="5+">
+				<expression>&lt;li&gt;release date: &lt;span class=""&gt;([^&lt;]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;runtime&gt;\1&lt;/runtime&gt;" dest="5+">
+				<expression>&lt;li&gt;runtime: &lt;span&gt;([0-9]*).*&lt;/span&gt;</expression>
+			</RegExp>
+			<RegExp input="$$8" output="&lt;genre&gt;\1&lt;/genre&gt;" dest="5+">
+				<RegExp input="$$1" output="\1" dest="8">
+					<expression noclean="1">&lt;ul id="movie-info-format"&gt;(.*?)&lt;/ul&gt;</expression>
+				</RegExp>
+				<expression repeat="yes">&lt;a href=[^&gt;]*&gt;([^&lt;]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;studio&gt;\1&lt;/studio&gt;" dest="5+">
+				<expression trim="1">class="full-scene-button "&gt;\s*([^&lt;]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;fanart&gt;&lt;thumb&gt;http://\1&lt;/thumb&gt;&lt;/fanart&gt;" dest="5+">
+				<expression>data-poster-image="https://([^"]*)</expression>
+			</RegExp>
+			<RegExp input="$$9" output="&lt;actor&gt;&lt;name&gt;\3&lt;/name&gt;&lt;role/&gt;&lt;thumb&gt;http://photo-stream-ht.dplaygroundcontent.com/content/models/\1/profile/300x404_1.jpg&lt;/thumb&gt;&lt;profile&gt;http://digitalplayground.com/model/\1/\2&lt;/profile&gt;&lt;/actor&gt;" dest="5+">
+				<RegExp input="$$1" output="\1" dest="9">
+					<expression noclean="1">&lt;div class="info-pgraph"&gt;(.*)&lt;/div&gt;</expression>
+				</RegExp>
+				<expression repeat="yes">&lt;a href="/model/([^/]*)/([^/]*)/"&gt;([^&lt;]*)&lt;/a&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;tagline&gt;&lt;/tagline&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;mpaa&gt;Rated NC-17&lt;/mpaa&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;country&gt;USA&lt;/country&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;trailer&gt;http://scene-stream-ht.dplaygroundcontent.com/content/\1/trailer1/vids/hd/\2&lt;/trailer&gt;" dest="5+">
+				<expression noclean="1">"720p_4000"[^c]*scene-stream-ht.dplaygroundcontent.com[^\\]*..[^\\]*..(\d{1,5})..trailer1..[^\\]*..hd..([^"]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;director&gt;\1&lt;/director&gt;" dest="5+">
+				<expression trim="1" noclean="1">class="full-scene-button "&gt;\s*([^&lt;]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;credits&gt;Digital Playground&lt;/credits&gt;" dest="5+">
+				<expression noclean="1" />
+			</RegExp>
+			<expression noclean="1" />
+		</RegExp>
+	</GetDetails>
+</scraper>

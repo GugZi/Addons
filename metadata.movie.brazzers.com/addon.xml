@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="metadata.movie.brazzers.com" 
+	   name="Brazzers-scraper"
+	   version="1.5.8"
+	   provider-name="GugZi">
+  <requires>
+    <import addon="xbmc.metadata" version="2.1.0"/>
+    <import addon="metadata.common.themoviedb.org" version="3.1.0"/>
+  </requires>
+  <extension point="xbmc.metadata.scraper.movies"
+             language="en"
+			 library="brazzers.xml"/>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Brazzer.com scraper</summary>
+    <description lang="en">Download XXX scene information from brazzers.com</description>
+    <language></language>
+    <platform>all</platform>
+  </extension>
+</addon>

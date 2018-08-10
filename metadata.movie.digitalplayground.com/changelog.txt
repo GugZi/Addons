@@ -1,0 +1,8 @@
+[B]Alpha 1.0.1[/B]
+- Fixed trailer
+
+[B]Alpha 1.0.0[/B]
+- First working release
+
+[B]Alpha 0.0.1[/B]
+- Created

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+<!-- Plugin settings: Limit section -->
+    <category label="Limit section" id="section_limit">
+        <setting type="sep" />
+        <setting label="[B]Options for limiting downloaded artwork[/B]" type="lsep" />
+        <setting type="sep" />
+        <setting label="[B]Enable/Disable Limit[/B]"  type="bool"      id="limit_artwork"      default="true"/>
+		<setting label="Maximum extrafanart"  type="slider"      id="limit_extrafanart_maximum"      default="1"      subsetting="true" enable="eq(-1,true)" visible="eq(-1,true)" range="1,5" option="int"/>
+     </category>
+
+<!-- Plugin settings: Movie section -->
+    <category label="Movie section" id="section_movie">
+        <setting type="sep" />
+        <setting label="[B]Options for downloading Movie artwork[/B]" type="lsep" />
+        <setting type="sep" />
+		<setting label="Fanart"  type="bool"      id="fanart"      default="true"/>
+		<setting label="Thumb [Not being used]"  type="bool"      id="thumb"      default="false"/>
+    </category>
+    
+<!-- Plugin settings: Trailer section -->
+	<category label="Trailer section" id="section_trailer">
+	    <setting type="sep" />
+        <setting label="[B]Options for downloading Trailer[/B]" type="lsep" />
+        <setting type="sep" />
+		<setting label="Enable Trailer"  type="bool"      id="trailer_enable"      default="true"/>
+    </category>
+</settings>

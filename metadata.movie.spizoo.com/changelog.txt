@@ -1,0 +1,8 @@
+[B]1.0.2[/B]
+- Fixed: not all actor get grabbed
+
+[B]1.0.1[/B]
+- Fixed: fanart not get grabbed sometime
+
+[B]1.0.0[/B]
+- Initial

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?><scraper framework="11" date="2018-08-08" name="EvilAngel-scraper" content="movies" thumb="icon.png" language="en">
+	<NfoUrl dest="3">
+		<RegExp input="$$1" output="&lt;url&gt;http://www.evilangel.com/en/video\1/&lt;/url&gt;" dest="3">
+			<expression noclean="1">evilangel.com/en/videos/([^/]*)/([0-9]*)</expression>
+		</RegExp>
+	</NfoUrl>
+	<CreateSearchUrl dest="3">
+		<RegExp input="$$1" output="&lt;url&gt;http://www.evilangel.com/en/search/\1&lt;/url&gt;" dest="3">
+			<expression clear="yes" noclean="1" />
+		</RegExp>
+	</CreateSearchUrl>
+	<GetSearchResults dest="6">
+		<RegExp input="$$4" output="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;results&gt;\1&lt;/results&gt;" dest="6+">
+			<RegExp input="$$1" output="&lt;entity&gt;&lt;title&gt;\3 (\4)&lt;/title&gt;&lt;url&gt;http://www.evilangel.com/en/video/\1/\2&lt;/url&gt;&lt;id&gt;\2&lt;/id&gt;&lt;/entity&gt;" dest="4+">
+				<expression repeat="yes" clear="yes">href="/en/video/([^/]*)/([^"]*)"&gt;([^&gt;]*)&lt;/a&gt;</expression>
+			</RegExp>
+			<expression noclean="1" />
+		</RegExp>
+	</GetSearchResults>
+	<GetDetails dest="7">
+		<RegExp input="$$5" output="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;&lt;details&gt;\1&lt;/details&gt;" dest="7">
+			<RegExp input="$$7" output="&lt;plot&gt;\1&lt;/plot&gt;" dest="5+">
+				<RegExp input="$$1" output="\1" dest="7">
+					<expression>&lt;strong&gt;Description :&lt;/strong&gt;(.*?)&lt;/div&gt;</expression>
+				</RegExp>
+				<expression trim="1" />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;outline&gt;\1.&lt;/outline&gt;" dest="5+">
+				<expression trim="1">&lt;strong&gt;Description :&lt;/strong&gt;\s*([^.]*)([.$]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;lockdata&gt;false&lt;/lockdata&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;dateadded&gt;&lt;/dateadded&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;title&gt;\1&lt;/title&gt;" dest="5+">
+				<expression trim="1">&lt;h1 class="seo_h1"&gt;([^&lt;]*)&lt;/h1&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;year&gt;\1&lt;/year&gt;" dest="5+">
+				<expression trim="1">&lt;div class="updatedDate"&gt;\s*[^&lt;]*([^-]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;premiered&gt;\1-\2-\3&lt;/premiered&gt;" dest="5+">
+				<expression>&lt;div class="updatedDate"&gt;\s*&lt;b&gt;&lt;/b&gt;.([0-9]*)-([0-9]*)-([0-9]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;releasedate&gt;\1-\2-\3&lt;/releasedate&gt;" dest="5+">
+				<expression>&lt;div class="updatedDate"&gt;\s*&lt;b&gt;&lt;/b&gt;.([0-9]*)-([0-9]*)-([0-9]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;runtime&gt;&lt;/runtime&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$8" output="&lt;genre&gt;\1&lt;/genre&gt;" dest="5+">
+				<RegExp input="$$1" output="\1" dest="8">
+					<expression noclean="1">&lt;div class="sceneCol sceneColCategories""&gt;(.*?)&lt;/div&gt;</expression>
+				</RegExp>
+				<expression repeat="yes">&lt;a href=[^&gt;]*&gt;([^&lt;]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;studio&gt;&lt;/studio&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;thumb aspect=&quot;poster&quot;&gt;http://\1&lt;/thumb&gt;" dest="5+">
+				<expression noclean="1">&lt;a class="dvdLink.*\s*&lt;img src="https://([^"]*)"</expression>
+			</RegExp>
+			<RegExp conditional="fanart" input="$$1" output="&lt;fanart&gt;&lt;thumb&gt;http://\1&lt;/thumb&gt;&lt;/fanart&gt;" dest="5+">
+				<expression>"picPreview"[^i]*([^"]*)"</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;thumb aspect=&quot;thumb&quot;&gt;&lt;/thumb&gt;" dest="5+">
+				<expression noclean="1" />
+			</RegExp>
+			<RegExp input="$$9" output="&lt;actor&gt;&lt;name&gt;\3&lt;/name&gt;&lt;type&gt;Actor&lt;/type&gt;&lt;thumb&gt;http://images02-evilangel.gammacdn.com/actors/\2/\2_200x300.jpg&lt;/thumb&gt;&lt;profile&gt;http://www.evilangel.com/en/pornstar/\1/\2&lt;/profile&gt;&lt;/actor&gt;" dest="5+">
+				<RegExp input="$$1" output="\1" dest="9">
+					<expression clear="yes" noclean="1">&lt;div class="sceneCol sceneColActors"&gt;(.*?)&lt;/div&gt;</expression>
+				</RegExp>
+				<expression repeat="yes">&lt;a href="/en/pornstar/([^/]*)/([^"]*)" title="([^"]*)"&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;tagline&gt;&lt;/tagline&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;mpaa&gt;Rated NC-17&lt;/mpaa&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;country&gt;USA&lt;/country&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp conditional="trailer_enable" input="$$1" output="&lt;trailer&gt;http://trailers-evilangel.gammacdn.com\1&lt;/trailer&gt;" dest="5+">
+				<expression noclean="1">'Stream-HD-720p'.*file="([^"]*)"</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;director&gt;\2&lt;/director&gt;" dest="5+">
+				<expression noclean="1">&lt;b&gt;Directed by&lt;/b&gt;\s*&lt;a href="/en/videos/([^"]*)" title="[^"]*"&gt;([^&lt;]*)&lt;/a&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;credits&gt;Evil Angel&lt;/credits&gt;" dest="5+">
+				<expression noclean="1" />
+			</RegExp>
+			<expression noclean="1" />
+		</RegExp>
+	</GetDetails>
+</scraper>

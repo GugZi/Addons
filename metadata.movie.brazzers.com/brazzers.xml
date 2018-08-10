@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?><scraper framework="11" date="2018-08-10" name="Brazzers-scraper" content="movies" thumb="icon.png" language="en">
+	<NfoUrl dest="3">
+		<RegExp input="$$1" output="&lt;url&gt;http://www.brazzers.com/scenes/view/id/\1/&lt;/url&gt;" dest="3">
+			<expression noclean="1">brazzers.com/scenes/view/id/([0-9]*)/([^/]*)/</expression>
+		</RegExp>
+	</NfoUrl>
+	<CreateSearchUrl dest="3">
+		<RegExp input="$$1" output="&lt;url&gt;http://www.brazzers.com/search/all/?q=\1&lt;/url&gt;" dest="3">
+			<expression clear="yes" noclean="1" />
+		</RegExp>
+	</CreateSearchUrl>
+	<GetSearchResults dest="6">
+		<RegExp input="$$4" output="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&lt;results&gt;\1&lt;/results&gt;" dest="6+">
+			<RegExp input="$$1" output="&lt;entity&gt;&lt;title&gt;\2&lt;/title&gt;&lt;url&gt;http://www.brazzers.com/scenes\1&lt;/url&gt;&lt;year&gt;\3&lt;/year&gt;&lt;/entity&gt;" dest="4+">
+				<expression repeat="yes" clear="yes">&lt;a href="/scenes([^"]*)"[^&gt;]* title="([^"]+)"[^.]*&lt;/h2&gt;[^,]*, ([0-9]*)[^&lt;]*&lt;/time&gt;</expression>
+			</RegExp>
+			<expression noclean="1" />
+		</RegExp>
+	</GetSearchResults>
+	<GetDetails dest="7">
+		<RegExp input="$$5" output="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;&lt;details&gt;\1&lt;/details&gt;" dest="7">
+			<RegExp input="$$1" output="&lt;plot&gt;\1&lt;/plot&gt;" dest="5+">
+				<expression trim="1">&lt;p itemprop="description"&gt;([^&lt;]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;outline&gt;\1.&lt;/outline&gt;" dest="5+">
+				<expression trim="1">&lt;p itemprop="description"&gt;([^.]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;lockdata&gt;false&lt;/lockdata&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;dateadded&gt;&lt;/dateadded&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;title&gt;\1&lt;/title&gt;" dest="5+">
+				<expression trim="1">&lt;h1 class="scene-title" itemprop="name"&gt;([^&lt;]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;year&gt;\1&lt;/year&gt;" dest="5+">
+				<expression noclean="1">[^,]*, ([0-9]*)&lt;/aside&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;premiered&gt;\1&lt;/premiered&gt;" dest="5+">
+				<expression>&lt;aside class="scene-date" itemprop="uploadDate" content="([0-9]*-[0-9]*-[0-9]*)*</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;releasedate&gt;\1&lt;/releasedate&gt;" dest="5+">
+				<expression>&lt;aside class="scene-date" itemprop="uploadDate" content="([0-9]*-[0-9]*-[0-9]*)*</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;runtime&gt;\2&lt;/runtime&gt;" dest="5+">
+				<expression>&lt;li class="scene-length" itemprop="duration" content="(.*?)"&gt;([0-9]*)</expression>
+			</RegExp>
+			<RegExp input="$$8" output="&lt;genre&gt;\1&lt;/genre&gt;" dest="5+">
+				<RegExp input="$$1" output="\1" dest="8">
+					<expression noclean="1">&lt;div class="tag-card-container"&gt;(.*?)&lt;/div&gt;</expression>
+				</RegExp>
+				<expression repeat="yes">&lt;a href=[^&gt;]*&gt;([^&lt;]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;studio&gt;\1&lt;/studio&gt;" dest="5+">
+				<expression>class="label-text"&gt;([^&lt;]*)&lt;/span&gt;\s*.*\s*&lt;aside</expression>
+			</RegExp>
+			<RegExp conditional="thumb" input="$$1" output="&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/01.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/01.jpg&lt;/thumb&gt;&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/02.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/02.jpg&lt;/thumb&gt;&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/03.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/03.jpg&lt;/thumb&gt;&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/04.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/04.jpg&lt;/thumb&gt;&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/05.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/thm/05.jpg&lt;/thumb&gt;&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/01.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/01.jpg&lt;/thumb&gt;&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/02.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/02.jpg&lt;/thumb&gt;&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/03.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/03.jpg&lt;/thumb&gt;&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/04.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/04.jpg&lt;/thumb&gt;&lt;thumb aspect=&quot;poster&quot; preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/05.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/05.jpg&lt;/thumb&gt;" dest="5+">
+				<expression noclean="1">//static-vz.brazzerscontent.com/scenes/([^/]*)/preview/</expression>
+			</RegExp>
+			<RegExp conditional="fanart" input="$$1" output="&lt;fanart&gt;&lt;thumb preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/975x548.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/975x548.jpg&lt;/thumb&gt;&lt;thumb preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/01.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/01.jpg&lt;/thumb&gt;&lt;thumb preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/02.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/02.jpg&lt;/thumb&gt;&lt;thumb preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/03.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/03.jpg&lt;/thumb&gt;&lt;thumb preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/04.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/04.jpg&lt;/thumb&gt;&lt;thumb preview=&quot;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/05.jpg&quot;&gt;http://static-vz.brazzerscontent.com/scenes/\1/preview/img/05.jpg&lt;/thumb&gt;&lt;/fanart&gt;" dest="5+">
+				<expression>//static-vz.brazzerscontent.com/scenes/([^/]*)/preview/</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;thumb aspect=&quot;thumb&quot;&gt;http://.jpg&lt;/thumb&gt;" dest="5+">
+				<expression noclean="1">&lt;a rel="preview" href="//([^"]*?02)</expression>
+			</RegExp>
+			<RegExp input="$$9" output="&lt;actor&gt;&lt;name&gt;\4&lt;/name&gt;&lt;type&gt;Actor&lt;/type&gt;&lt;thumb&gt;http://\1/\2/\3/model-large.jpg&lt;/thumb&gt;&lt;profile&gt;http://www.brazzers.com/profile/view/id/\3/\4&lt;/profile&gt;&lt;/actor&gt;" dest="5+">
+				<RegExp input="$$1" output="\1" dest="9">
+					<expression noclean="1">&lt;div class="scene-tour-right"&gt;(.*)&lt;/div&gt;</expression>
+				</RegExp>
+				<expression repeat="yes">&lt;img class="lazy card-main-img" data-src="//([^/]*)/([^/]*)/([^/]*)/[^/]*" alt="([^"]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;tagline&gt;\1&lt;/tagline&gt;" dest="5+">
+				<expression>class="label-text"&gt;([^&lt;]*)&lt;/span&gt;\s*.*\s*&lt;aside</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;mpaa&gt;Rated NC-17&lt;/mpaa&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp input="$$1" output="&lt;country&gt;USA&lt;/country&gt;" dest="5+">
+				<expression />
+			</RegExp>
+			<RegExp conditional="trailer_enable" input="$$1" output="&lt;trailer&gt;http://trailer-stream-ht.brazzerscontent.com/\2/vids/\3\5=\6&amp;\7=\8&amp;\9&lt;/trailer&gt;" dest="5+">
+				<expression noclean="1">"mp4_720_2600"[^t]*trailer-stream-(?:ht|hw).brazzerscontent.com([^/]*)/([^/]*)./\w{1,4}./(.*?.(mp4|flv|f4v))?([^=]*).([^&amp;]*).([^=]*).([^&amp;]*).([^"]*)</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;director&gt;\1&lt;/director&gt;" dest="5+">
+				<expression noclean="1">class="label-left-box"&gt;([^&lt;]*)&lt;/span&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;credits&gt;BraZZers&lt;/credits&gt;" dest="5+">
+				<expression noclean="1" />
+			</RegExp>
+			<expression noclean="1" />
+		</RegExp>
+	</GetDetails>
+</scraper>

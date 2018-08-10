@@ -1,8 +1,0 @@
-[B]1.0.2[/B]
-- Fixed plot not getting all text
-
-[B]1.0.1[/B]
-- Fixed plot not working
-
-[B]1.0.0[/B]
-- Initial

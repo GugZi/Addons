@@ -1,12 +1,15 @@
+[B]1.5.9[/B]
+- Change: director to full name instet of tag name
+
 [B]1.5.8[/B]
-- new: Now you can change poster / fanart
+- New: Now you can change poster / fanart
 
 [B]1.5.7[/B]
-- fixed: Scraper
+- Fixed: Scraper
 
 [B]1.5.6[/B]
-- fixed: image url
+- Fixed: image url
 
 [B]1.5.6[/B]
-- fixed: Scraper
-- fixed: NFO
+- Fixed: Scraper
+- Fixed: NFO

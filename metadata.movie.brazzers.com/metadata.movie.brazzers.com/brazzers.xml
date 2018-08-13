@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><scraper framework="11" date="2018-08-10" name="Brazzers-scraper" content="movies" thumb="icon.png" language="en">
+﻿<?xml version="1.0" encoding="utf-8"?><scraper framework="11" date="2018-08-13" name="Brazzers-scraper" content="movies" thumb="icon.png" language="en">
 	<NfoUrl dest="3">
 		<RegExp input="$$1" output="&lt;url&gt;http://www.brazzers.com/scenes/view/id/\1/&lt;/url&gt;" dest="3">
 			<expression noclean="1">brazzers.com/scenes/view/id/([0-9]*)/([^/]*)/</expression>
@@ -83,7 +83,7 @@
 				<expression noclean="1">"mp4_720_2600"[^t]*trailer-stream-(?:ht|hw).brazzerscontent.com([^/]*)/([^/]*)./\w{1,4}./(.*?.(mp4|flv|f4v))?([^=]*).([^&amp;]*).([^=]*).([^&amp;]*).([^"]*)</expression>
 			</RegExp>
 			<RegExp input="$$1" output="&lt;director&gt;\1&lt;/director&gt;" dest="5+">
-				<expression noclean="1">class="label-left-box"&gt;([^&lt;]*)&lt;/span&gt;</expression>
+				<expression noclean="1">class="label-text"&gt;([^&lt;]*)&lt;/span&gt;\s*.*\s*&lt;aside</expression>
 			</RegExp>
 			<RegExp input="$$1" output="&lt;credits&gt;BraZZers&lt;/credits&gt;" dest="5+">
 				<expression noclean="1" />

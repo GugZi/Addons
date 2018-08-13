@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><scraper framework="11" date="2018-08-10" name="Spizoo-scraper" content="movies" thumb="icon.png" language="en">
+﻿<?xml version="1.0" encoding="utf-8"?><scraper framework="11" date="2018-08-13" name="Spizoo-scraper" content="movies" thumb="icon.png" language="en">
 	<NfoUrl dest="3">
 		<RegExp input="$$1" output="&lt;url&gt;http://www.spizoo.com/updates/\1.html&lt;/url&gt;" dest="3">
 			<expression noclean="1">spizoo.com/updates/([^/]*)</expression>
@@ -52,7 +52,7 @@
 				</RegExp>
 				<expression repeat="yes" trim="1">&lt;a href=[^&gt;]*&gt;([^&lt;]*)</expression>
 			</RegExp>
-			<RegExp input="$$1" output="&lt;studio&gt;&lt;/studio&gt;" dest="5+">
+			<RegExp input="$$1" output="&lt;studio&gt;Spizoo&lt;/studio&gt;" dest="5+">
 				<expression />
 			</RegExp>
 			<RegExp input="$$1" output="&lt;thumb aspect=&quot;poster&quot;&gt;&lt;/thumb&gt;" dest="5+">

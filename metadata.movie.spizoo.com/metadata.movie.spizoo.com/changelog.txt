@@ -1,3 +1,6 @@
+[B]1.0.4[/B]
+- Added: studio
+
 [B]1.0.3[/B]
 - Fixed: addons not working
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="metadata.movie.spizoo.com" 
 	   name="Spizoo-scraper"
-	   version="1.0.3"
+	   version="1.0.4"
 	   provider-name="GugZi">
   <requires>
     <import addon="xbmc.metadata" version="2.1.0"/>
